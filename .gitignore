@@ -1,0 +1,25 @@
+# Unity generated files
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+
+# IDE and operating system files
+.vs/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Generated audio analysis files
+*.sfk
+
+# Local environment files
+.env
+.env.*
+!.env.example

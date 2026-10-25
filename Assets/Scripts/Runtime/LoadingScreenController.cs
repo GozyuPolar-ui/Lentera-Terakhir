@@ -69,6 +69,8 @@ namespace JRPG.Menu
         private float imageLifetime;
         private float fogStartX;
         private float fogStartY;
+        private float progressFillStartX;
+        private float progressFillEndX;
         private int hintIndex;
         private bool isLoading;
         private bool waitingForContinue;
@@ -90,6 +92,13 @@ namespace JRPG.Menu
             if (artworkViewport == null)
             {
                 artworkViewport = transform as RectTransform;
+            }
+
+            if (progressFill != null)
+            {
+                RectTransform progressRect = progressFill.rectTransform;
+                progressFillStartX = progressRect.anchorMin.x;
+                progressFillEndX = progressRect.anchorMax.x;
             }
 
             if (fogOverlay != null)
@@ -148,6 +157,7 @@ namespace JRPG.Menu
             elapsedLoadingTime = 0f;
             presentationStartedAt = 0f;
             displayedProgress = 0f;
+            SetProgressVisuals();
             gameObject.SetActive(true);
             if (loadingRoutine != null)
             {
@@ -263,7 +273,8 @@ namespace JRPG.Menu
 
             if (progressFill != null)
             {
-                progressFill.fillAmount = 0f;
+                progressFill.rectTransform.anchorMax = new Vector2(
+                    progressFillStartX, progressFill.rectTransform.anchorMax.y);
             }
 
             if (hintGroup != null)
@@ -446,7 +457,10 @@ namespace JRPG.Menu
         {
             if (progressFill != null)
             {
-                progressFill.fillAmount = displayedProgress;
+                RectTransform progressRect = progressFill.rectTransform;
+                progressRect.anchorMax = new Vector2(
+                    Mathf.Lerp(progressFillStartX, progressFillEndX, displayedProgress),
+                    progressRect.anchorMax.y);
             }
 
             if (progressText != null)
@@ -459,8 +473,9 @@ namespace JRPG.Menu
             if (lanternGlow != null)
             {
                 Color glow = lanternGlow.color;
-                lanternGlow.color = new Color(glow.r, glow.g, glow.b, Mathf.Lerp(0.18f, 1f, displayedProgress));
-                lanternGlow.transform.localScale = Vector3.one * Mathf.Lerp(0.72f, 1.12f, displayedProgress);
+                lanternGlow.color = new Color(
+                    glow.r, glow.g, glow.b, Mathf.Lerp(0.12f, 0.32f, displayedProgress));
+                lanternGlow.transform.localScale = Vector3.one * Mathf.Lerp(0.84f, 1f, displayedProgress);
             }
         }
 

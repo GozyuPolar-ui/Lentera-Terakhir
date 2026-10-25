@@ -93,20 +93,15 @@ namespace JRPG.EditorTools
             prompt.gameObject.SetActive(false);
 
             CreateImage(canvasObject.transform, "Progress_Background",
-                new Color(0.72f, 0.74f, 0.78f, 0.28f), new Vector2(0.095f, 0.095f),
-                new Vector2(0.905f, 0.099f));
+                new Color(0.12f, 0.14f, 0.15f, 0.48f), new Vector2(0.095f, 0.096f),
+                new Vector2(0.905f, 0.098f));
             Image progress = CreateImage(canvasObject.transform, "Progress_Fill",
-                new Color(0.91f, 0.58f, 0.32f), new Vector2(0.095f, 0.095f),
-                new Vector2(0.905f, 0.099f));
-            progress.type = Image.Type.Filled;
-            progress.fillMethod = Image.FillMethod.Horizontal;
-            progress.fillOrigin = (int)Image.OriginHorizontal.Left;
-            progress.fillAmount = 0f;
+                new Color(0.68f, 0.56f, 0.43f, 0.72f), new Vector2(0.095f, 0.096f),
+                new Vector2(0.905f, 0.098f));
 
             Image glow = CreateImage(canvasObject.transform, "Progress_Lantern_Glow",
-                new Color(1f, 0.63f, 0.28f, 0.18f), new Vector2(0.089f, 0.075f),
+                new Color(0.68f, 0.56f, 0.43f, 0.12f), new Vector2(0.089f, 0.075f),
                 new Vector2(0.115f, 0.125f));
-            glow.color = new Color(1f, 0.58f, 0.22f, 0.2f);
             glow.raycastTarget = false;
 
             TextMeshProUGUI progressText = CreateText(
